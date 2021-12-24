@@ -4,8 +4,10 @@ import {
     createAsyncThunk,
     ActionReducerMapBuilder
 } from '@reduxjs/toolkit';
+import axios, { AxiosError } from 'axios';
 
-import { IAnimeListDetails } from '../../../models/animeList/IAnimeListDetails';
+import animeDataService from '../../../api/services/anime.service';
+import { IAnimeListDetails, IAnimeListResponseError } from '../../../models/animeList/IAnimeListDetails';
 
 export enum Loading {
     IDLE,
@@ -15,26 +17,41 @@ export enum Loading {
 };
 
 interface IInitialState {
-    list: IAnimeListDetails[],
-    loading: Loading
+    list: IAnimeListDetails[];
+    loading: Loading;
+    errorText: string;
 };
 
 const initialState: IInitialState = {
     list: [],
-    loading: Loading.IDLE
+    loading: Loading.IDLE,
+    errorText: ''
 };
 
 interface IError {
-    message: string
-}
+    message: string;
+};
 
-export const fetchAnimeList = createAsyncThunk<IAnimeListDetails[], null, { rejectValue: IError } >(
-    'animeList/fetchData',
-    async (_, { rejectWithValue }) => {
-        if (true) {
-            return rejectWithValue({ message: '312321' })
-        }
-        return []
+export const fetchAnimeList = createAsyncThunk<
+    IAnimeListDetails[],
+    number, 
+    { 
+        rejectValue: IError 
+    } 
+    >('animeList/fetchData',
+    async (page: number, { rejectWithValue }) => {
+        const res = await animeDataService
+            .getAll(page)
+            .catch((err: Error | AxiosError<IAnimeListResponseError> ) => {
+                let text: string = '';
+                if (axios.isAxiosError(err)) {
+                    text = err.response?.data?.error || 'error';
+                } else {
+                    text = err.message;
+                }
+                throw rejectWithValue({ message: text });
+            })
+        return res.data.results;
     }
 )
 
@@ -43,18 +60,19 @@ const animeSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<IInitialState>) => {
-        builder.addCase(fetchAnimeList.pending, (state: IInitialState) => {
-            state.loading = Loading.PENDING
-        });
-
-        builder.addCase(fetchAnimeList.fulfilled, (state: IInitialState, action: PayloadAction<IAnimeListDetails[]>) => {
-            state.list.push(...action.payload)
-        });
-
-        builder.addCase(fetchAnimeList.rejected, (state: IInitialState) => {
-
-        });
+        builder
+            .addCase(fetchAnimeList.pending, (state: IInitialState) => {
+                state.loading = Loading.PENDING;
+            })
+            .addCase(fetchAnimeList.fulfilled, (state: IInitialState, action: PayloadAction<IAnimeListDetails[]>) => {
+                console.log('action.payload', action.payload)
+                state.list.push(...action.payload);
+                state.loading = Loading.SUCCEEDED;
+            })
+            .addCase(fetchAnimeList.rejected, (state: IInitialState, action) => {
+                state.loading = Loading.FAILED;
+            });
     }
 })
 
-export default animeSlice.reducer
+export default animeSlice.reducer;
