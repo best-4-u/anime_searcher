@@ -45,13 +45,13 @@ export const fetchAnimeList = createAsyncThunk<
             .catch((err: Error | AxiosError<IAnimeListResponseError> ) => {
                 let text: string = '';
                 if (axios.isAxiosError(err)) {
-                    text = err.response?.data?.error || 'error';
+                    text = err.response?.data?.errors[0].detail || 'error';
                 } else {
                     text = err.message;
                 }
                 throw rejectWithValue({ message: text });
             })
-        return res.data.results;
+        return res.data.data;
     }
 )
 
@@ -65,12 +65,12 @@ const animeSlice = createSlice({
                 state.loading = Loading.PENDING;
             })
             .addCase(fetchAnimeList.fulfilled, (state: IInitialState, action: PayloadAction<IAnimeListDetails[]>) => {
-                console.log('action.payload', action.payload)
                 state.list.push(...action.payload);
                 state.loading = Loading.SUCCEEDED;
             })
             .addCase(fetchAnimeList.rejected, (state: IInitialState, action) => {
                 state.loading = Loading.FAILED;
+                state.errorText = action.payload?.message || ''
             });
     }
 })
