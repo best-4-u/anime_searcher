@@ -7,7 +7,7 @@ import {
 import axios, { AxiosError } from 'axios';
 
 import animeDataService from '../../../api/services/anime.service';
-import { IAnimeListDetails, IAnimeListResponseError } from '../../../models/animeList/IAnimeListDetails';
+import { IAnimeDetails, IAnimeListResponseError } from '../../../models/animeList/IAnimeListDetails';
 
 export enum Loading {
     IDLE,
@@ -17,7 +17,7 @@ export enum Loading {
 };
 
 interface IInitialState {
-    list: IAnimeListDetails[];
+    list: IAnimeDetails[];
     loading: Loading;
     errorText: string;
 };
@@ -33,7 +33,7 @@ interface IError {
 };
 
 export const fetchAnimeList = createAsyncThunk<
-    IAnimeListDetails[],
+    IAnimeDetails[],
     number, 
     { 
         rejectValue: IError 
@@ -64,7 +64,7 @@ const animeSlice = createSlice({
             .addCase(fetchAnimeList.pending, (state: IInitialState) => {
                 state.loading = Loading.PENDING;
             })
-            .addCase(fetchAnimeList.fulfilled, (state: IInitialState, action: PayloadAction<IAnimeListDetails[]>) => {
+            .addCase(fetchAnimeList.fulfilled, (state: IInitialState, action: PayloadAction<IAnimeDetails[]>) => {
                 state.list.push(...action.payload);
                 state.loading = Loading.SUCCEEDED;
             })

@@ -5,7 +5,7 @@ import {
   fetchAnimeList,
   Loading,
 } from "../../../state/slices/anime/animeSlice";
-import { IAnimeListDetails } from "../../../models/animeList/IAnimeListDetails";
+import { IAnimeDetails } from "../../../models/animeList/IAnimeListDetails";
 import { RootState } from "../../../state/store";
 
 import Loader from "react-loader-spinner";
@@ -19,7 +19,7 @@ const AnimeList: FC = () => {
     (state) => state.animeList.loading
   );
 
-  const list = useSelector<RootState, IAnimeListDetails[]>(
+  const list = useSelector<RootState, IAnimeDetails[]>(
     (state) => state.animeList.list
   );
   const errorText = useSelector<RootState, string>(

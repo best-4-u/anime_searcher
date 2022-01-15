@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate replace to="/anime" />} />
           <Route path="/anime" element={<AnimeList />}></Route>
-          <Route path="/anime/:animeId" element={<AnimeDetails />} />
+          <Route path="/anime/:animeName" element={<AnimeDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

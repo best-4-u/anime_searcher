@@ -11,6 +11,13 @@ class AnimeDataService {
         return http
             .get<IAnimeListResponse>(`${url}/anime?page[limit]=10&page[offset]=${page * 10}`);
     }
+
+    getAnimeListByDetails(slug: string): Promise<AxiosResponse<IAnimeListResponse, any>> {
+        return http
+            .get<IAnimeListResponse>(
+                `${url}/anime?page[limit]=1&filter[slug]=${slug}&fields[categories]=slug,title`
+            );
+    }
 }
 
 export default new AnimeDataService();

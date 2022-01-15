@@ -8,18 +8,16 @@ import debounce from "../../utils/functions/debounce";
 interface IListItem {
   clickHandler(id: string): void;
   itemDetails: IAnimeListDetailsAttributes;
-  id: string;
+  slug: string;
 }
 
-const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
+const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, slug }) {
   const [clamped, setClamped] = useState<boolean>(true);
   const [showButton, setShowButton] = useState<boolean>(true);
 
   const handleClickClamp = (): void => {
     setClamped(!clamped);
   };
-
-  console.log('updated...')
 
   const synopsisRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +28,7 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
     };
 
     if (synopsisRef.current) {
-      hasClamping(synopsisRef.current)
+      hasClamping(synopsisRef.current);
       // const hadClampClass = synopsisRef.current.classList.contains(styles.clamp);
       // if (!hadClampClass) synopsisRef.current.classList.add(styles.clamp);
       setShowButton(hasClamping(synopsisRef.current));
@@ -41,8 +39,6 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
   useEffect(() => {
     const debouncedResize = debounce(onResize, 100);
 
-    console.log('debounced...')
-
     onResize();
     window.addEventListener("resize", debouncedResize);
 
@@ -52,12 +48,7 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
   }, [synopsisRef]);
 
   return (
-    <div
-      className={styles.list_item}
-      onClick={() => {
-        clickHandler(id);
-      }}
-    >
+    <div className={styles.list_item}>
       <div className={styles.left_side}>
         <img
           src={
@@ -67,7 +58,12 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
         />
       </div>
       <div className={styles.right_side}>
-        <span className={styles.anime_item_title}>
+        <span
+          className={styles.anime_item_title}
+          onClick={() => {
+            clickHandler(slug);
+          }}
+        >
           {itemDetails.canonicalTitle}
         </span>
         <div className={styles.anime_item_extra}>
@@ -85,7 +81,10 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
           </div>
         </div>
         <div>
-          <div className={ classNames(clamped && styles.clamp) } ref={synopsisRef}>
+          <div
+            className={classNames(clamped && styles.clamp)}
+            ref={synopsisRef}
+          >
             {itemDetails.synopsis}
           </div>
           {showButton && (

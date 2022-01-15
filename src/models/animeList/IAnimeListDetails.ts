@@ -45,14 +45,14 @@ export interface IAnimeListDetailsAttributes {
 	nsfw: boolean;
 }
 
-export interface IAnimeListDetails {
+export interface IAnimeDetails {
 	id: string;
 	type: string;
 	attributes: IAnimeListDetailsAttributes;
 };
 
 export interface IAnimeListResponse {
-	data: IAnimeListDetails[]
+	data: IAnimeDetails[]
 }
 
 export interface IAnimeListResponseErrorType {
