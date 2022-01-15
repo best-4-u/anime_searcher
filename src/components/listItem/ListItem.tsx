@@ -3,6 +3,7 @@ import { IAnimeListDetailsAttributes } from "../../models/animeList/IAnimeListDe
 
 import styles from "./ListItem.module.scss";
 import classNames from "classnames";
+import debounce from "../../utils/functions/debounce";
 
 interface IListItem {
   clickHandler(id: string): void;
@@ -18,6 +19,8 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
     setClamped(!clamped);
   };
 
+  console.log('updated...')
+
   const synopsisRef = useRef<HTMLDivElement>(null);
 
   const onResize = () => {
@@ -27,6 +30,7 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
     };
 
     if (synopsisRef.current) {
+      hasClamping(synopsisRef.current)
       // const hadClampClass = synopsisRef.current.classList.contains(styles.clamp);
       // if (!hadClampClass) synopsisRef.current.classList.add(styles.clamp);
       setShowButton(hasClamping(synopsisRef.current));
@@ -35,22 +39,9 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, id }) {
   };
 
   useEffect(() => {
-    const debounce = function <T extends Function>(cb: T, wait: number) {
-      let timeout: null | ReturnType<typeof setTimeout> = null;
-      let callable = (...args: any) => {
-        if (timeout !== null) {
-          clearTimeout(timeout);
-        }
-  
-        timeout = setTimeout(() => {
-          cb(...args);
-        }, wait);
-      };
-  
-      return callable;
-    };
-
     const debouncedResize = debounce(onResize, 100);
+
+    console.log('debounced...')
 
     onResize();
     window.addEventListener("resize", debouncedResize);
