@@ -36,21 +36,21 @@
       align-items: center;
 
       div + div {
-          margin-left: 0.8rem;
+        margin-left: 0.8rem;
       }
 
       > div {
         display: inline-block;
 
         > span:last-child {
-            font-weight: 600;
+          font-weight: 600;
         }
       }
     }
   }
-  
+
   + .list_item {
-      margin-top: 2rem;
+    margin-top: 2rem;
   }
 
   .clamp_button {
@@ -81,14 +81,13 @@
       display: flex;
 
       > img {
-          max-width: 100%;
-          height: fit-content;
-        }
+        max-width: 100%;
+        height: fit-content;
+      }
     }
 
     .clamp {
       -webkit-line-clamp: 10;
     }
-
   }
 }
