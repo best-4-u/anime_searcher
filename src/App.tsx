@@ -1,5 +1,6 @@
 import "./App.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { Navigate, Route, Routes } from "react-router-dom";
 

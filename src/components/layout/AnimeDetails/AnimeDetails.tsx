@@ -1,18 +1,30 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import animeDataService from "../../../api/services/anime.service";
-import { IAnimeDetails } from "../../../models/animeList/IAnimeListDetails";
-import NotFound from "../NotFound/NotFound";
 import classNames from "classnames";
-import styles from "./AnimeDetails.module.scss";
 
+import animeDataService from "../../../api/services/anime.service";
+
+import { IAnimeDetails } from "../../../models/animeList/IAnimeListDetails";
+
+import NotFound from "../NotFound/NotFound";
 import { ReactComponent as CalendarIcon } from "../../../assets/icons/calendar.svg";
 import { ReactComponent as StarIcon } from "../../../assets/icons/star.svg";
 import { ReactComponent as DocumentIcon } from "../../../assets/icons/document.svg";
 import { ReactComponent as HastagIcon } from "../../../assets/icons/hastag.svg";
 
+import styles from "./AnimeDetails.module.scss";
+import AnimeDetailsLoader from "./AnimeDetailsLoader";
+
+enum Loading {
+  PENDING,
+  FAILED,
+  SUCCEEDED,
+}
+
 const AnimeDetails: FC = () => {
   const params = useParams();
+
+  const [loading, setLoading] = useState<Loading>(Loading.PENDING);
 
   const animeName = params.animeName ?? "";
 
@@ -24,11 +36,27 @@ const AnimeDetails: FC = () => {
         console.log(res.data.data[0]);
         setAnime(res.data.data[0]);
       }
-    });
+      setLoading(Loading.SUCCEEDED);
+    }).catch( (err: Error) => {
+      console.error(err);
+      setLoading(Loading.FAILED);
+    })
   }, [animeName]);
 
-  if (anime === null) {
+
+  if (loading === Loading.SUCCEEDED && anime === null) {
     return <NotFound />;
+  }
+  if (loading === Loading.FAILED && anime === null) {
+    return null;
+  }
+
+  if (anime === null) {
+    return (
+      <div className={styles.anime_details}>
+        <AnimeDetailsLoader />
+      </div>
+    )
   }
 
   return (
@@ -52,7 +80,7 @@ const AnimeDetails: FC = () => {
                 <CalendarIcon width={16} height={16} fill="#dbdbdb" />
               </div>
               <div>
-                <h3> Начало: </h3>
+                <h3> Start date: </h3>
                 <time
                   className={styles.info_description}
                   dateTime={anime.attributes.startDate}
@@ -72,7 +100,7 @@ const AnimeDetails: FC = () => {
                 <StarIcon width={16} height={16} fill="#dbdbdb" />
               </div>
               <div>
-                <h3> Рейтинг: </h3>
+                <h3> Rating: </h3>
                 <span> {anime.attributes.averageRating} </span>
               </div>
             </section>
@@ -87,7 +115,7 @@ const AnimeDetails: FC = () => {
                 <HastagIcon width={16} height={16} fill="#dbdbdb" />
               </div>
               <div>
-                <h3> Количество эпизодов: </h3>
+                <h3> Episode count: </h3>
                 <span> {anime.attributes.episodeCount} </span>
               </div>
             </section>
@@ -102,7 +130,7 @@ const AnimeDetails: FC = () => {
                 <DocumentIcon width={16} height={16} fill="#dbdbdb" />
               </div>
               <div>
-                <h3> Тип аниме: </h3>
+                <h3> Anime type: </h3>
                 <span> {anime.attributes.showType} </span>
               </div>
             </section>
