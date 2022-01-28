@@ -33,29 +33,31 @@ const AnimeList: FC = () => {
   }, [page, dispatch]);
 
   return (
-    <div className={styles.anime_main_list}>
-      <InfiniteScroll
-        dataLength={list.length}
-        hasMore={true}
-        loader={
-          <div className={styles.loader}>
-            <Loader type="ThreeDots" color="#00BFFF" height={100} width={100} />
-          </div>
-        }
-        next={() => {
-          setPage((page) => page + 1);
-        }}
-      >
-        <List />
-      </InfiniteScroll>
+    <main>
+      <div className={styles.anime_main_list}>
+        <InfiniteScroll
+          dataLength={list.length}
+          hasMore={true}
+          loader={
+            <div className={styles.loader}>
+              <Loader type="ThreeDots" color="#00BFFF" height={100} width={100} />
+            </div>
+          }
+          next={() => {
+            setPage((page) => page + 1);
+          }}
+        >
+          <List />
+        </InfiniteScroll>
 
-      {loading === Loading.FAILED && (
-        <div>
-          Something went wrong
-          <pre> {errorText} </pre>
-        </div>
-      )}
-    </div>
+        {loading === Loading.FAILED && (
+          <div>
+            Something went wrong
+            <pre> {errorText} </pre>
+          </div>
+        )}
+      </div>
+    </main>
   );
 };
 

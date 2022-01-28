@@ -29,10 +29,7 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, slug }) {
 
     if (synopsisRef.current) {
       hasClamping(synopsisRef.current);
-      // const hadClampClass = synopsisRef.current.classList.contains(styles.clamp);
-      // if (!hadClampClass) synopsisRef.current.classList.add(styles.clamp);
       setShowButton(hasClamping(synopsisRef.current));
-      // if (!hadClampClass) synopsisRef.current.classList.remove(styles.clamp);
     }
   };
 
@@ -98,4 +95,4 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, slug }) {
   );
 };
 
-export default memo(ListItem);
+export default ListItem;

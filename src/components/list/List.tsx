@@ -17,10 +17,8 @@ export default function List() {
   let navigate = useNavigate();
 
   const onClickItem = useCallback((slug: string) => {
-    console.log("item", slug);
-
     navigate(`${slug}`);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className={styles.anime_list}>
