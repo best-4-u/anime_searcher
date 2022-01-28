@@ -64,6 +64,7 @@ const animeSlice = createSlice({
   reducers: {
     clearList(state: IInitialState): void {
       state.list = [];
+      state.page = 1;
     },
     setPage(state: IInitialState, action: PayloadAction<number>) {
       state.page = action.payload;

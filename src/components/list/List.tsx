@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -19,12 +19,17 @@ export default function List() {
 
   let navigate = useNavigate();
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearList());
+    }
+  }, [dispatch]);
+
   const onClickItem = useCallback(
     (slug: string) => {
-      dispatch(clearList());
       navigate(`${slug}`);
     },
-    [dispatch, navigate]
+    [navigate]
   );
 
   return (
