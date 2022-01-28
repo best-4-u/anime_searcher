@@ -31,24 +31,26 @@ const AnimeDetails: FC = () => {
   const [anime, setAnime] = useState<IAnimeDetails | null>(null);
 
   useEffect(() => {
-    animeDataService.getAnimeListByDetails(animeName).then((res) => {
-      if (res.data.data.length > 0) {
-        console.log(res.data.data[0]);
-        setAnime(res.data.data[0]);
-      }
-      setLoading(Loading.SUCCEEDED);
-    }).catch( (err: Error) => {
-      console.error(err);
-      setLoading(Loading.FAILED);
-    })
+    animeDataService
+      .getAnimeListByDetails(animeName)
+      .then((res) => {
+        if (res.data.data.length > 0) {
+          console.log(res.data.data[0]);
+          setAnime(res.data.data[0]);
+        }
+        setLoading(Loading.SUCCEEDED);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        setLoading(Loading.FAILED);
+      });
   }, [animeName]);
-
 
   if (loading === Loading.SUCCEEDED && anime === null) {
     return <NotFound />;
   }
   if (loading === Loading.FAILED && anime === null) {
-    return null;
+    return <h1>Something bad happened, sorry</h1>;
   }
 
   if (anime === null) {
@@ -56,7 +58,7 @@ const AnimeDetails: FC = () => {
       <div className={styles.anime_details}>
         <AnimeDetailsLoader />
       </div>
-    )
+    );
   }
 
   return (

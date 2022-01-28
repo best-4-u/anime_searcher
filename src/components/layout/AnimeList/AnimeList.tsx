@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAnimeList,
   Loading,
+  setPage,
 } from "../../../state/slices/anime/animeSlice";
 import { IAnimeDetails } from "../../../models/animeList/IAnimeListDetails";
 import { RootState } from "../../../state/store";
@@ -25,7 +26,8 @@ const AnimeList: FC = () => {
   const errorText = useSelector<RootState, string>(
     (state) => state.animeList.errorText
   );
-  const [page, setPage] = useState<number>(1);
+  const page = useSelector<RootState, number>((state) => state.animeList.page);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,11 +42,16 @@ const AnimeList: FC = () => {
           hasMore={true}
           loader={
             <div className={styles.loader}>
-              <Loader type="ThreeDots" color="#00BFFF" height={100} width={100} />
+              <Loader
+                type="ThreeDots"
+                color="#00BFFF"
+                height={100}
+                width={100}
+              />
             </div>
           }
           next={() => {
-            setPage((page) => page + 1);
+            dispatch(setPage(page + 1));
           }}
         >
           <List />

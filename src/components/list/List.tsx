@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { RootState } from "../../state/store";
@@ -8,17 +8,24 @@ import { IAnimeDetails } from "../../models/animeList/IAnimeListDetails";
 import ListItem from "../ListItem/ListItem";
 
 import styles from "./List.module.scss";
+import { clearList } from "../../state/slices/anime/animeSlice";
 
 export default function List() {
   const list = useSelector<RootState, IAnimeDetails[]>(
     (state) => state.animeList.list
   );
 
+  const dispatch = useDispatch();
+
   let navigate = useNavigate();
 
-  const onClickItem = useCallback((slug: string) => {
-    navigate(`${slug}`);
-  }, [navigate]);
+  const onClickItem = useCallback(
+    (slug: string) => {
+      dispatch(clearList());
+      navigate(`${slug}`);
+    },
+    [dispatch, navigate]
+  );
 
   return (
     <div className={styles.anime_list}>

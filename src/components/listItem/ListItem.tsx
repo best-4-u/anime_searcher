@@ -1,8 +1,9 @@
-import { FC, memo, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import { IAnimeListDetailsAttributes } from "../../models/animeList/IAnimeListDetails";
 
 import styles from "./ListItem.module.scss";
 import classNames from "classnames";
+
 import debounce from "../../utils/functions/debounce";
 
 interface IListItem {
@@ -55,14 +56,15 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, slug }) {
         />
       </div>
       <div className={styles.right_side}>
-        <span
-          className={styles.anime_item_title}
-          onClick={() => {
-            clickHandler(slug);
-          }}
-        >
-          {itemDetails.canonicalTitle}
-        </span>
+        <div className={styles.anime_item_title}>
+          <span
+            onClick={() => {
+              clickHandler(slug);
+            }}
+          >
+            {itemDetails.canonicalTitle}
+          </span>
+        </div>
         <div className={styles.anime_item_extra}>
           <div>
             <span> Rating: </span>

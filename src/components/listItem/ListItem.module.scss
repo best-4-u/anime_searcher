@@ -25,10 +25,16 @@
 
     .anime_item_title {
       text-align: center;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #3f51b5;
-      cursor: pointer;
+      > span {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #3f51b5;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     > .anime_item_extra {

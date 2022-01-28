@@ -23,12 +23,14 @@ interface IInitialState {
   list: IAnimeDetails[];
   loading: Loading;
   errorText: string;
+  page: number;
 }
 
 const initialState: IInitialState = {
   list: [],
   loading: Loading.IDLE,
   errorText: "",
+  page: 1,
 };
 
 interface IError {
@@ -59,7 +61,14 @@ export const fetchAnimeList = createAsyncThunk<
 const animeSlice = createSlice({
   name: "animeList",
   initialState,
-  reducers: {},
+  reducers: {
+    clearList(state: IInitialState): void {
+      state.list = [];
+    },
+    setPage(state: IInitialState, action: PayloadAction<number>) {
+      state.page = action.payload;
+    },
+  },
   extraReducers: (builder: ActionReducerMapBuilder<IInitialState>) => {
     builder
       .addCase(fetchAnimeList.pending, (state: IInitialState) => {
@@ -78,5 +87,7 @@ const animeSlice = createSlice({
       });
   },
 });
+
+export const { clearList, setPage } = animeSlice.actions;
 
 export default animeSlice.reducer;
