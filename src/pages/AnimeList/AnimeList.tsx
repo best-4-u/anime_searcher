@@ -5,21 +5,22 @@ import {
   fetchAnimeList,
   Loading,
   setPage,
-} from "../../../state/slices/anime/animeSlice";
-import { IAnimeDetails } from "../../../models/animeDetails/IAnimeDetails";
-import { RootState } from "../../../state/store";
+} from "../../state/slices/anime/animeSlice";
+import { IAnimeDetails } from "../../models/animeDetails/IAnimeDetails";
 
+import { clearList } from "../../state/slices/anime/animeSlice";
+import { RootState } from "../../state/store";
+
+import List from "./components/List/List";
 import Loader from "react-loader-spinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import styles from "./AnimeList.module.scss";
-import List from "../../List/List";
 
 const AnimeList: FC = () => {
   const loading = useSelector<RootState, Loading>(
     (state) => state.animeList.loading
   );
-
   const list = useSelector<RootState, IAnimeDetails[]>(
     (state) => state.animeList.list
   );
@@ -29,6 +30,10 @@ const AnimeList: FC = () => {
   const page = useSelector<RootState, number>((state) => state.animeList.page);
 
   const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(clearList());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchAnimeList(page));
@@ -54,7 +59,7 @@ const AnimeList: FC = () => {
             dispatch(setPage(page + 1));
           }}
         >
-          <List />
+          <List list={list} />
         </InfiniteScroll>
 
         {loading === Loading.FAILED && (

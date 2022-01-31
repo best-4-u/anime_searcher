@@ -1,10 +1,10 @@
 import { FC, useState, useEffect, useRef } from "react";
-import { IAnimeListDetailsAttributes } from "../../models/animeDetails/IAnimeDetails";
+import { IAnimeListDetailsAttributes } from "../../../../models/animeDetails/IAnimeDetails";
 
 import styles from "./ListItem.module.scss";
 import classNames from "classnames";
 
-import debounce from "../../utils/functions/debounce/debounce";
+import debounce from "../../../../utils/functions/debounce/debounce";
 
 interface IListItem {
   clickHandler(id: string): void;

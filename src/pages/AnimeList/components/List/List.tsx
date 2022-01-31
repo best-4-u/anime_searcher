@@ -1,29 +1,18 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { RootState } from "../../state/store";
-import { IAnimeDetails } from "../../models/animeDetails/IAnimeDetails";
+import { IAnimeDetails } from "../../../../models/animeDetails/IAnimeDetails";
 
 import ListItem from "../ListItem/ListItem";
 
 import styles from "./List.module.scss";
-import { clearList } from "../../state/slices/anime/animeSlice";
 
-export default function List() {
-  const list = useSelector<RootState, IAnimeDetails[]>(
-    (state) => state.animeList.list
-  );
+interface props {
+  list: IAnimeDetails[]
+}
 
-  const dispatch = useDispatch();
-
+const List: FC<props> = ({ list } : props) => {
   let navigate = useNavigate();
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearList());
-    };
-  }, [dispatch]);
 
   const onClickItem = useCallback(
     (slug: string) => {
@@ -47,3 +36,5 @@ export default function List() {
     </div>
   );
 }
+
+export default List;

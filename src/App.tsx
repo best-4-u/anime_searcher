@@ -3,7 +3,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import AnimeList from "./components/layout/AnimeList/AnimeList";
+import AnimeList from "./pages/AnimeList/AnimeList";
 import AnimeDetails from "./pages/AnimeDetails/AnimeDetails";
 import NotFound from "./pages/NotFound/NotFound";
 
