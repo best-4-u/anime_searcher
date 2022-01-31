@@ -4,7 +4,7 @@ import { IAnimeListDetailsAttributes } from "../../models/animeList/IAnimeListDe
 import styles from "./ListItem.module.scss";
 import classNames from "classnames";
 
-import debounce from "../../utils/functions/debounce";
+import debounce from "../../utils/functions/debounce/debounce";
 
 interface IListItem {
   clickHandler(id: string): void;

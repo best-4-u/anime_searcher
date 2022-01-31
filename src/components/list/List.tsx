@@ -22,7 +22,7 @@ export default function List() {
   useEffect(() => {
     return () => {
       dispatch(clearList());
-    }
+    };
   }, [dispatch]);
 
   const onClickItem = useCallback(
