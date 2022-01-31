@@ -8,10 +8,10 @@ import ListItem from "../ListItem/ListItem";
 import styles from "./List.module.scss";
 
 interface props {
-  list: IAnimeDetails[]
+  list: IAnimeDetails[];
 }
 
-const List: FC<props> = ({ list } : props) => {
+const List: FC<props> = ({ list }) => {
   let navigate = useNavigate();
 
   const onClickItem = useCallback(
@@ -27,7 +27,6 @@ const List: FC<props> = ({ list } : props) => {
         return (
           <ListItem
             key={item.id}
-            slug={item.attributes.slug}
             itemDetails={item.attributes}
             clickHandler={onClickItem}
           />
@@ -35,6 +34,6 @@ const List: FC<props> = ({ list } : props) => {
       })}
     </div>
   );
-}
+};
 
 export default List;

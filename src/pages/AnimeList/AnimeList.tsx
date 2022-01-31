@@ -31,8 +31,10 @@ const AnimeList: FC = () => {
 
   const dispatch = useDispatch();
 
-  useEffect( () => {
-    dispatch(clearList());
+  useEffect(() => {
+    return () => {
+      dispatch(clearList());
+    };
   }, [dispatch]);
 
   useEffect(() => {

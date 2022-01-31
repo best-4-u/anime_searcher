@@ -9,10 +9,9 @@ import debounce from "../../../../utils/functions/debounce/debounce";
 interface IListItem {
   clickHandler(id: string): void;
   itemDetails: IAnimeListDetailsAttributes;
-  slug: string;
 }
 
-const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, slug }) {
+const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails }) {
   const [clamped, setClamped] = useState<boolean>(true);
   const [showButton, setShowButton] = useState<boolean>(true);
 
@@ -59,7 +58,7 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails, slug }) {
         <div className={styles.anime_item_title}>
           <span
             onClick={() => {
-              clickHandler(slug);
+              clickHandler(itemDetails.slug);
             }}
           >
             {itemDetails.canonicalTitle}
