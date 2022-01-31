@@ -12,6 +12,14 @@ describe("debounce", () => {
     debouncedFunc = debounce(func, DEBOUNCED_TIME);
   });
 
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   test("execute just once", () => {
     for (let i = 0; i < 100; i++) {
       debouncedFunc();
