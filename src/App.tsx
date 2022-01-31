@@ -4,8 +4,8 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import AnimeList from "./components/layout/AnimeList/AnimeList";
-import AnimeDetails from "./components/layout/AnimeDetails/AnimeDetails";
-import NotFound from "./components/layout/NotFound/NotFound";
+import AnimeDetails from "./pages/AnimeDetails/AnimeDetails";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (

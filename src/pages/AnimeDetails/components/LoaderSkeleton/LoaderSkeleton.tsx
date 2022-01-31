@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-const AnimeDetailsLoader = () => (
+const LoaderSkeleton = () => (
   <ContentLoader
     speed={2}
     width={"100%"}
@@ -24,4 +24,4 @@ const AnimeDetailsLoader = () => (
   </ContentLoader>
 );
 
-export default AnimeDetailsLoader;
+export default LoaderSkeleton;
