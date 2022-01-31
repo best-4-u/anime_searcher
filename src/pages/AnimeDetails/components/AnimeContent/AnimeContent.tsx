@@ -1,3 +1,4 @@
+import { FC } from "react";
 import classNames from "classnames";
 
 import { IAnimeDetails } from "../../../../models/animeDetails/IAnimeDetails";
@@ -9,7 +10,7 @@ import { ReactComponent as HastagIcon } from "../../../../assets/icons/hastag.sv
 
 import styles from "./AnimeContent.module.scss";
 
-const AnimeContent = (anime: IAnimeDetails) => {
+const AnimeContent: FC<IAnimeDetails> = (anime: IAnimeDetails) => {
   return (
     <div className={styles.container}>
       <section>

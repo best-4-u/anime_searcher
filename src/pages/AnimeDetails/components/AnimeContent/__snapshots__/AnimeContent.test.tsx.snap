@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader skeleton renders correctly when there are no items 1`] = `
+<div
+  className="container"
+>
+  <section>
+    <img
+      alt="anime"
+      src="https://media.kitsu.io/anime/poster_images/12/original.png"
+    />
+  </section>
+  <section>
+    <h2
+      className="anime_title"
+    >
+      One Piece
+    </h2>
+    <div
+      className="anime_info"
+    >
+      <section
+        className="anime_create_date anime_info_section"
+      >
+        <div
+          className="icon_wrapper"
+        >
+          <svg
+            fill="#dbdbdb"
+            height={16}
+            width={16}
+          >
+            calendar.svg
+          </svg>
+        </div>
+        <div>
+          <h3>
+             Start date: 
+          </h3>
+          <time
+            className="info_description"
+            dateTime="1999-10-20"
+          >
+            1999-10-20
+          </time>
+        </div>
+      </section>
+      <section
+        className="anime_create_date anime_info_section"
+      >
+        <div
+          className="icon_wrapper"
+        >
+          <svg
+            fill="#dbdbdb"
+            height={16}
+            width={16}
+          >
+            star.svg
+          </svg>
+        </div>
+        <div>
+          <h3>
+             Rating: 
+          </h3>
+          <span>
+             
+            83.1
+             
+          </span>
+        </div>
+      </section>
+      <section
+        className="anime_create_date anime_info_section"
+      >
+        <div
+          className="icon_wrapper"
+        >
+          <svg
+            fill="#dbdbdb"
+            height={16}
+            width={16}
+          >
+            hastag.svg
+          </svg>
+        </div>
+        <div>
+          <h3>
+             Episode count: 
+          </h3>
+          <span>
+             
+             
+          </span>
+        </div>
+      </section>
+      <section
+        className="anime_create_date anime_info_section"
+      >
+        <div
+          className="icon_wrapper"
+        >
+          <svg
+            fill="#dbdbdb"
+            height={16}
+            width={16}
+          >
+            document.svg
+          </svg>
+        </div>
+        <div>
+          <h3>
+             Anime type: 
+          </h3>
+          <span>
+             
+            TV
+             
+          </span>
+        </div>
+      </section>
+    </div>
+    <section>
+      <h2>
+         Description 
+      </h2>
+      <p>
+        Gol D. Roger was known as the "Pirate King,"
+      </p>
+    </section>
+  </section>
+</div>
+`;
