@@ -7,10 +7,8 @@ import {
 import axios, { AxiosError } from "axios";
 
 import animeDataService from "../../../api/services/anime.service";
-import {
-  IAnimeDetails,
-  IAnimeListResponseError,
-} from "../../../models/animeList/IAnimeListDetails";
+import { IAnimeDetails } from "../../../models/animeDetails/IAnimeDetails";
+import { IAnimeListResponseError } from "../../../models/animeDetails/IAnimeListResponseError";
 
 export enum Loading {
   IDLE,

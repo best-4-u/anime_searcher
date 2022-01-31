@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useRef } from "react";
-import { IAnimeListDetailsAttributes } from "../../models/animeList/IAnimeListDetails";
+import { IAnimeListDetailsAttributes } from "../../models/animeDetails/IAnimeDetails";
 
 import styles from "./ListItem.module.scss";
 import classNames from "classnames";

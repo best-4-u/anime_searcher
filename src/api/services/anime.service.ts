@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 
 import http from "../http_axios";
-import { IAnimeListResponse } from "../../models/animeList/IAnimeListDetails";
+import { IAnimeListResponse } from "../../models/animeDetails/IAnimeListResponseBody";
 import env from "../../utils/config/env.config";
 
 const url = env.animeDbUrl + "/edge";

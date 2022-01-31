@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import animeDataService from "../../../api/services/anime.service";
 
-import { IAnimeDetails } from "../../../models/animeList/IAnimeListDetails";
+import { IAnimeDetails } from "../../../models/animeDetails/IAnimeDetails";
 
 import NotFound from "../NotFound/NotFound";
 import { ReactComponent as CalendarIcon } from "../../../assets/icons/calendar.svg";

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { RootState } from "../../state/store";
-import { IAnimeDetails } from "../../models/animeList/IAnimeListDetails";
+import { IAnimeDetails } from "../../models/animeDetails/IAnimeDetails";
 
 import ListItem from "../ListItem/ListItem";
 

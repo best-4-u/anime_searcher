@@ -6,7 +6,7 @@ import {
   Loading,
   setPage,
 } from "../../../state/slices/anime/animeSlice";
-import { IAnimeDetails } from "../../../models/animeList/IAnimeListDetails";
+import { IAnimeDetails } from "../../../models/animeDetails/IAnimeDetails";
 import { RootState } from "../../../state/store";
 
 import Loader from "react-loader-spinner";
