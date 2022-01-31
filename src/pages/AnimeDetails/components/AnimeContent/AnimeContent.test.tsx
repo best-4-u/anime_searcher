@@ -3,8 +3,8 @@ import { IAnimeDetails } from "../../../../models/animeDetails/IAnimeDetails";
 
 import AnimeContent from "./AnimeContent";
 
-describe("Loader skeleton", () => {
-  it("renders correctly when there are no items", () => {
+describe("Anime Content", () => {
+  it("renders correctly snapshot", () => {
     const date = new Date();
 
     const data: IAnimeDetails = {
@@ -14,10 +14,8 @@ describe("Loader skeleton", () => {
         createdAt: date,
         updatedAt: date,
         slug: "one-piece",
-        synopsis:
-          'Gol D. Roger was known as the "Pirate King,"',
-        description:
-          'Gol D. Roger was known as the "Pirate King,"',
+        synopsis: 'Gol D. Roger was known as the "Pirate King,"',
+        description: 'Gol D. Roger was known as the "Pirate King,"',
         coverImageTopOffset: 50,
         canonicalTitle: "One Piece",
         abbreviatedTitles: ["ワンピース"],

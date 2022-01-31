@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loader skeleton renders correctly when there are no items 1`] = `
+exports[`Anime Content renders correctly snapshot 1`] = `
 <div
   className="container"
 >
