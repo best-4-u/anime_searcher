@@ -5,11 +5,11 @@ import {
   fetchAnimeList,
   Loading,
   setPage,
-} from "../../state/slices/anime/animeSlice";
+} from "../../store/slices/anime/animeSlice";
 import { IAnimeDetails } from "../../models/animeDetails/IAnimeDetails";
 
-import { clearList } from "../../state/slices/anime/animeSlice";
-import { RootState } from "../../state/store";
+import { clearList } from "../../store/slices/anime/animeSlice";
+import { RootState } from "../../store/store";
 
 import List from "./components/List/List";
 import Loader from "react-loader-spinner";
