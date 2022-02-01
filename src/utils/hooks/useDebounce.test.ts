@@ -1,5 +1,8 @@
-import { renderHook, RenderHookResult } from "@testing-library/react-hooks";
-import { act } from "react-dom/test-utils";
+import {
+  renderHook,
+  RenderHookResult,
+  act,
+} from "@testing-library/react-hooks";
 
 import useDebounce from "./useDebounce";
 
@@ -33,35 +36,34 @@ describe("use debounce hook", () => {
   });
 
   it("should return new value", () => {
-    const delay = 5;
+    const delay = 1000;
     const text = "";
     const nextText = "new Text";
 
-    const hook = getHook(text, delay);
+    const { result, rerender } = getHook(text, delay);
 
-    expect(hook.result.current).toEqual(text);
+    expect(result.current).toEqual(text);
+
+    rerender({ value: nextText, delay });
 
     act(() => {
-      hook.rerender({ value: nextText, delay });
       jest.runAllTimers();
     });
 
-    expect(hook.result.current).toEqual(nextText);
+    expect(result.current).toEqual(nextText);
   });
 
   it("should not return new value", () => {
-    const delay = 5;
+    const delay = 1000;
     const text = "";
     const nextText = "new Text";
 
-    const hook = getHook(text, delay);
+    const { result, rerender } = getHook(text, delay);
 
-    expect(hook.result.current).toEqual(text);
+    expect(result.current).toEqual(text);
 
-    act(() => {
-      hook.rerender({ value: nextText, delay });
-    });
+    rerender({ value: nextText, delay });
 
-    expect(hook.result.current).not.toEqual(nextText);
+    expect(result.current).not.toEqual(nextText);
   });
 });

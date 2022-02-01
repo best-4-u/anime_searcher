@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List component shows component with 2 items correctly 1`] = `
+<div
+  className="anime_list"
+>
+  <div
+    className="list_item"
+  >
+    <div
+      className="left_side"
+    >
+      <img
+        alt="anime"
+        src="https://media.kitsu.io/anime/poster_images/12/medium.jpg"
+      />
+    </div>
+    <div
+      className="right_side"
+    >
+      <div
+        className="anime_item_title"
+      >
+        <span
+          onClick={[Function]}
+        >
+          One Piece
+        </span>
+      </div>
+      <div
+        className="anime_item_extra"
+      >
+        <div>
+          <span>
+             Rating: 
+          </span>
+          <span>
+             
+            83.1
+             
+          </span>
+        </div>
+        <div>
+          <span>
+             Type: 
+          </span>
+          <span>
+             
+            TV
+             
+          </span>
+        </div>
+        <div>
+          <span>
+             Episodes: 
+          </span>
+          <span>
+             
+            Unknown
+             
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="clamp"
+        >
+          Gol D. Roger was known as the "Pirate King,"
+        </div>
+        <span
+          className="clamp_button"
+          onClick={[Function]}
+        >
+          Read 
+          more
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="list_item"
+  >
+    <div
+      className="left_side"
+    >
+      <img
+        alt="anime"
+        src="https://media.kitsu.io/anime/poster_images/12/medium.jpg"
+      />
+    </div>
+    <div
+      className="right_side"
+    >
+      <div
+        className="anime_item_title"
+      >
+        <span
+          onClick={[Function]}
+        >
+          One Piece
+        </span>
+      </div>
+      <div
+        className="anime_item_extra"
+      >
+        <div>
+          <span>
+             Rating: 
+          </span>
+          <span>
+             
+            83.1
+             
+          </span>
+        </div>
+        <div>
+          <span>
+             Type: 
+          </span>
+          <span>
+             
+            TV
+             
+          </span>
+        </div>
+        <div>
+          <span>
+             Episodes: 
+          </span>
+          <span>
+             
+            Unknown
+             
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="clamp"
+        >
+          Gol D. Roger was known as the "Pirate King,"
+        </div>
+        <span
+          className="clamp_button"
+          onClick={[Function]}
+        >
+          Read 
+          more
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
