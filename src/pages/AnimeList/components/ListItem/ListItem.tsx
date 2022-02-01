@@ -60,6 +60,7 @@ const ListItem: FC<IListItem> = function ({ clickHandler, itemDetails }) {
             onClick={() => {
               clickHandler(itemDetails.slug);
             }}
+            role={"button"}
           >
             {itemDetails.canonicalTitle}
           </span>

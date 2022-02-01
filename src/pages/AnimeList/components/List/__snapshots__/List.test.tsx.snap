@@ -23,6 +23,7 @@ exports[`List component shows component with 2 items correctly 1`] = `
       >
         <span
           onClick={[Function]}
+          role="button"
         >
           One Piece
         </span>
@@ -65,7 +66,7 @@ exports[`List component shows component with 2 items correctly 1`] = `
         <div
           className="clamp"
         >
-          Gol D. Roger was known as the "Pirate King,"
+          Gol D. Roger was known as the "Pirate King"
         </div>
         <span
           className="clamp_button"
@@ -96,8 +97,9 @@ exports[`List component shows component with 2 items correctly 1`] = `
       >
         <span
           onClick={[Function]}
+          role="button"
         >
-          One Piece
+          Naruto
         </span>
       </div>
       <div
@@ -109,7 +111,7 @@ exports[`List component shows component with 2 items correctly 1`] = `
           </span>
           <span>
              
-            83.1
+            97.1
              
           </span>
         </div>
@@ -138,7 +140,7 @@ exports[`List component shows component with 2 items correctly 1`] = `
         <div
           className="clamp"
         >
-          Gol D. Roger was known as the "Pirate King,"
+          Naruto is a boy shinobi...
         </div>
         <span
           className="clamp_button"

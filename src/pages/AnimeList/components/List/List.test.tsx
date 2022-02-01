@@ -1,5 +1,6 @@
 import { create } from "react-test-renderer";
 import { IAnimeDetails } from "../../../../models/animeDetails/IAnimeDetails";
+// import { list } from "../../../../__tests__/data/data";
 import List from "./List";
 
 const mockedUsedNavigate = jest.fn();
@@ -13,14 +14,14 @@ describe("List component", () => {
 
   const list: IAnimeDetails[] = [
     {
-      id: "12",
+      id: "1",
       type: "anime",
       attributes: {
         createdAt: date,
         updatedAt: date,
         slug: "one-piece",
-        synopsis: 'Gol D. Roger was known as the "Pirate King,"',
-        description: 'Gol D. Roger was known as the "Pirate King,"',
+        synopsis: 'Gol D. Roger was known as the "Pirate King"',
+        description: 'Gol D. Roger was known as the "Pirate King"',
         coverImageTopOffset: 50,
         canonicalTitle: "One Piece",
         abbreviatedTitles: ["ワンピース"],
@@ -63,27 +64,27 @@ describe("List component", () => {
       },
     },
     {
-      id: "1",
+      id: "2",
       type: "anime",
       attributes: {
         createdAt: date,
         updatedAt: date,
-        slug: "one-piece",
-        synopsis: 'Gol D. Roger was known as the "Pirate King,"',
-        description: 'Gol D. Roger was known as the "Pirate King,"',
+        slug: "Naruto",
+        synopsis: "Naruto is a boy shinobi...",
+        description: "Naruto is a boy shinobi...",
         coverImageTopOffset: 50,
-        canonicalTitle: "One Piece",
+        canonicalTitle: "Naruto",
         abbreviatedTitles: ["ワンピース"],
-        averageRating: "83.1",
+        averageRating: "97.1",
         userCount: 186101,
         favoritesCount: 6578,
-        startDate: "1999-10-20",
+        startDate: "1995-10-20",
         endDate: null,
         nextRelease: date,
-        popularityRank: 14,
-        ratingRank: 33,
+        popularityRank: 2,
+        ratingRank: 1,
         ageRating: "PG",
-        ageRatingGuide: "Teens 13 or older",
+        ageRatingGuide: "Teens 12 or older",
         subtype: "TV",
         status: "current",
         tba: null,
