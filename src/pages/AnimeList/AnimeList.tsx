@@ -24,7 +24,6 @@ const AnimeList: FC = () => {
   const list = useSelector<RootState, IAnimeDetails[]>(
     (state) => state.animeList.list
   );
-  console.log("list", list);
   const errorText = useSelector<RootState, string>(
     (state) => state.animeList.errorText
   );
