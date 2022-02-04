@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List component shows component with 2 items correctly 1`] = `
-<div
-  className="anime_list"
->
+<div>
   <div
     className="list_item"
   >

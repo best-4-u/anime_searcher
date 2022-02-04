@@ -1,11 +1,9 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { IAnimeDetails } from "../../../../models/animeDetails/IAnimeDetails";
 
 import ListItem from "../ListItem/ListItem";
-
-import styles from "./List.module.scss";
 
 interface props {
   list: IAnimeDetails[];
@@ -14,15 +12,12 @@ interface props {
 const List: FC<props> = ({ list }) => {
   let navigate = useNavigate();
 
-  const onClickItem = useCallback(
-    (slug: string) => {
-      navigate(`${slug}`);
-    },
-    [navigate]
-  );
+  const onClickItem = (slug: string) => {
+    navigate(`${slug}`);
+  };
 
   return (
-    <div className={styles.anime_list}>
+    <div>
       {list.map((item) => {
         return (
           <ListItem

@@ -8,9 +8,10 @@ const url = env.animeDbUrl + "/edge";
 
 class AnimeDataService {
   getAll(page: number): Promise<AxiosResponse<IAnimeListResponse, any>> {
-    return http.get<IAnimeListResponse>(
+    const res = http.get<IAnimeListResponse>(
       `${url}/anime?page[limit]=10&page[offset]=${page * 10}`
     );
+    return res;
   }
 
   getAnimeListByDetails(

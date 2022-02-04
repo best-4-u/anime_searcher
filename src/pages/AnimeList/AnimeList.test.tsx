@@ -1,6 +1,14 @@
+import { render } from "@testing-library/react";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+
+import AnimeList from "./AnimeList";
+
+import AnimeDataService from "../../api/services/anime.service";
+import { IAnimeDetails } from "../../models/animeDetails/IAnimeDetails";
+import * as redux from "react-redux";
 import { create } from "react-test-renderer";
-import { IAnimeDetails } from "../../../../models/animeDetails/IAnimeDetails";
-import List from "./List";
 
 const mockedUsedNavigate = jest.fn();
 
@@ -9,7 +17,24 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-describe("List component", () => {
+jest.mock("axios", () => {
+  return {
+    create: () => {
+      return {
+        interceptors: {
+          request: { eject: jest.fn(), use: jest.fn() },
+          response: { eject: jest.fn(), use: jest.fn() },
+        },
+        get: jest.fn(),
+        post: jest.fn(),
+      };
+    },
+  };
+});
+
+describe("Anime List", () => {
+  const middlewares = [thunk];
+
   const date = new Date();
 
   const list: IAnimeDetails[] = [
@@ -115,8 +140,60 @@ describe("List component", () => {
     },
   ];
 
-  it("shows component with 2 items correctly", () => {
-    const tree = create(<List list={list} />).toJSON();
+  it("on created call fetching data", () => {
+    const initialState = {
+      animeList: {
+        list: [],
+        loading: false,
+        errorText: "",
+        page: 1,
+      },
+    };
+    const mockStore = configureStore(middlewares);
+    let store = mockStore(initialState);
+
+    const getAll = jest.fn((): Promise<any> => {
+      return new Promise((resolve) => {
+        process.nextTick(() =>
+          resolve({
+            data: list,
+          })
+        );
+      });
+    });
+
+    jest.spyOn(AnimeDataService, "getAll").mockImplementation(getAll);
+
+    render(
+      <Provider store={store}>
+        <AnimeList />
+      </Provider>
+    );
+
+    expect(getAll).toBeCalledTimes(1);
+  });
+
+  it("check snapshot created with data", () => {
+    const initialState = {
+      animeList: {
+        list: [],
+        loading: false,
+        errorText: "",
+        page: 1,
+      },
+    };
+    const spy = jest.spyOn(redux, "useSelector");
+
+    const mockStore = configureStore(middlewares);
+    let store = mockStore(initialState);
+
+    spy.mockReturnValue(list);
+
+    const tree = create(
+      <Provider store={store}>
+        <AnimeList />
+      </Provider>
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

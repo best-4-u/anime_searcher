@@ -28,7 +28,7 @@ const initialState: IInitialState = {
   list: [],
   loading: Loading.IDLE,
   errorText: "",
-  page: 1,
+  page: 0,
 };
 
 interface IError {

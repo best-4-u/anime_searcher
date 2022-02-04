@@ -31,7 +31,7 @@ const AnimeDetails: FC = () => {
       .getAnimeListByDetails(animeName)
       .then((res) => {
         if (res.data.data.length > 0) {
-          console.log(res.data.data[0]);
+          // console.log(res.data.data[0]);
           setAnime(res.data.data[0]);
         }
         setLoading(Loading.SUCCEEDED);
